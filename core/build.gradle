@@ -1,0 +1,15 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+
+dependencies{
+
+    compile "mysql:mysql-connector-java:5.1.25"
+    compile "hsqldb:hsqldb:1.8.0.7"
+
+    testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'org.springframework:spring-test:4.0.0.RELEASE'
+}

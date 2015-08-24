@@ -1,43 +1,23 @@
-apply plugin:'java'
+allprojects {
+    apply plugin: 'idea'
 
-task hello << {println 'hello Gradle'}
-
-defaultTasks 'clean', 'compile'
-
-task hello1 << {
-    println 'hello1'
 }
 
-task hello2 {
-    doFirst {
-        println 'hello3'
+subprojects {
+    apply plugin: 'java'
+    repositories{
+        mavenCentral()
     }
-    doLast {
-        println 'hello2'
+
+    dependencies{
+        compile 'org.springframework:spring-webmvc:4.0.0.RELEASE'
+        compile 'org.springframework:spring-jdbc:4.0.0.RELEASE'
+        compile 'commons-dbcp:commons-dbcp:1.2.2'
+        testCompile 'junit:junit:4.11'
     }
 }
 
-task showTasks {
-    println tasks.class
-    println tasks.size()
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
 }
-
-tasks.create(name: 'hello4') << {
-    println 'hello4'
-}
-
-task hello5(dependsOn: hello4) << {
-   println 'hello5'
-}
-
-task hello6 << {
-    println 'hello6'
-}
-hello6.dependsOn hello5
-
-task hello7 << {
-    description = 'this is hello7'
-}
-
-
-
